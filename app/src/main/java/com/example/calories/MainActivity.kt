@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -77,8 +78,12 @@ fun CaloriesScreen() {
       modifier=Modifier.padding(8.dp),
       verticalArrangement= Arrangement.spacedBy(8.dp)
   ) {
+
      Heading(title = stringResource(R.string.calories))
-     WeightField(weightInput= weightInput,onValueChange={weightInput= it})
+
+      WeightField(weightInput= weightInput,onValueChange={weightInput= it})
+
+
       GenderChoices(male, setGenderMale = {male= it} )
       IntensityList(onClick ={intensity = it})
       Text(
@@ -102,15 +107,15 @@ fun Heading(title:String) {
       textAlign = TextAlign.Center,
       color = MaterialTheme.colorScheme.primary,
       modifier = Modifier
-          .fillMaxSize()
+          .fillMaxWidth()
           .padding(top = 16.dp, bottom = 16.dp)
   )
 }
 
 
 @Composable
-fun WeightField(weightInput:String,onValueChange:(String) ->Unit) {
-    OutlinedTextField(
+fun WeightField(weightInput: String,onValueChange:(String) ->Unit) {
+OutlinedTextField(
         value = weightInput,
         onValueChange =onValueChange,
         label = { Text(text = "Enter weight")},
@@ -216,6 +221,6 @@ fun Calculation(male: Boolean, weight: Int, intensity: Float, setResult: (Int) -
 @Composable
 fun DefaultTPreview() {
     CaloriesTheme {
-        CaloriesScreen()
+      CaloriesScreen()
     }
 }
